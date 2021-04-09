@@ -29,34 +29,41 @@ export default function Sidebar(props) {
     <List className={classes.list}>
       {routes.map((prop, key) => {
         var listItemClasses;
-
+        // const isParent = this.state.isParent;
         const whiteFontClasses = classNames({
           [" " + classes.whiteFont]: activeRoute(prop.layout + prop.path),
         });
+
         return (
-          <NavLink
-            to={prop.layout + prop.path}
-            className={classes.item}
-            activeClassName="active"
-            key={key}
-          >
-            <ListItem button className={classes.itemLink + listItemClasses}>
-              {typeof prop.icon === "string" ? (
-                <Icon
-                  className={classNames(classes.itemIcon, whiteFontClasses)}
-                >
-                  {prop.icon}
-                </Icon>
-              ) : (
-                <prop.icon className={classNames(classes.itemIcon)} />
-              )}
-              <ListItemText
-                primary={prop.name}
-                className={classNames(classes.itemText, whiteFontClasses)}
-                disableTypography={true}
-              />
-            </ListItem>
-          </NavLink>
+          <>
+            {prop.isParent == true ? (
+              <div>Hello World</div>
+            ) : (
+              <NavLink
+                to={prop.layout + prop.path}
+                className={classes.item}
+                activeClassName="active"
+                key={key}
+              >
+                <ListItem button className={classes.itemLink + listItemClasses}>
+                  {typeof prop.icon === "string" ? (
+                    <Icon
+                      className={classNames(classes.itemIcon, whiteFontClasses)}
+                    >
+                      {prop.icon}
+                    </Icon>
+                  ) : (
+                    <prop.icon className={classNames(classes.itemIcon)} />
+                  )}
+                  <ListItemText
+                    primary={prop.name}
+                    className={classNames(classes.itemText, whiteFontClasses)}
+                    disableTypography={true}
+                  />
+                </ListItem>
+              </NavLink>
+            )}
+          </>
         );
       })}
     </List>
@@ -130,4 +137,5 @@ Sidebar.propTypes = {
   logoText: PropTypes.string,
   routes: PropTypes.arrayOf(PropTypes.object),
   open: PropTypes.bool,
+  isParent: PropTypes.bool,
 };

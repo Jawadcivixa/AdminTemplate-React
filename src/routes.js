@@ -64,6 +64,13 @@ const dashboardRoutes = [
     icon: Notifications,
     component: Test,
     layout: "/admin",
+    isParent: true,
+    children: {
+      path: "/test1",
+      name: "Test1",
+      icon: Notifications,
+      component: Test,
+    },
   },
 ];
 
